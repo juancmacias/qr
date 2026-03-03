@@ -1,0 +1,51 @@
+# Configuración Apache para PHP QR Code
+
+# Habilitar rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Bloquear acceso a archivos sensibles
+    RewriteRule ^\.env$ - [F,L]
+    RewriteRule ^\.git - [F,L]
+</IfModule>
+
+# Proteger archivos de configuración
+<FilesMatch "^(\.env|\.htaccess|\.gitignore|config\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Permitir acceso a archivos estáticos necesarios
+<FilesMatch "\.(png|jpg|jpeg|gif|css|js|ico)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Configuración de PHP
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value memory_limit 128M
+    php_value max_execution_time 30
+</IfModule>
+
+# Habilitar compresión
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript
+</IfModule>
+
+# Caché de navegador para recursos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+</IfModule>
+
+# Configuración de seguridad
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

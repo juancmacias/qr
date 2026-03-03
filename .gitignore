@@ -1,12 +1,18 @@
+# Archivos de entorno
+.env
+
 # Cache files
 cache/
+*.cache
 
 # Temporary files
 temp/
 *.tmp
+*.temp
 
 # Log files
 *.log
+error.log
 
 # OS generated files
 .DS_Store

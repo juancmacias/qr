@@ -26,28 +26,29 @@
  */
  
     $QR_BASEDIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+    $QR_LIBDIR = $QR_BASEDIR.'lib'.DIRECTORY_SEPARATOR;
     $QR_TOOLSDIR = dirname(__FILE__).DIRECTORY_SEPARATOR;
     
-    $outputFile = $QR_BASEDIR.'phpqrcode.php';
+    $outputFile = $QR_LIBDIR.'phpqrcode.php';
     
     // Required libs
     
     $fileList = array(
-        $QR_BASEDIR.'qrconst.php',
+        $QR_LIBDIR.'qrconst.php',
         $QR_TOOLSDIR.'merged_config.php',
-        $QR_BASEDIR.'qrtools.php',
-        $QR_BASEDIR.'qrspec.php',
-        $QR_BASEDIR.'qrimage.php',
-        $QR_BASEDIR.'qrinput.php',
-        $QR_BASEDIR.'qrbitstream.php',
-        $QR_BASEDIR.'qrsplit.php',
-        $QR_BASEDIR.'qrrscode.php',
-        $QR_BASEDIR.'qrmask.php',
-        $QR_BASEDIR.'qrencode.php'
+        $QR_LIBDIR.'qrtools.php',
+        $QR_LIBDIR.'qrspec.php',
+        $QR_LIBDIR.'qrimage.php',
+        $QR_LIBDIR.'qrinput.php',
+        $QR_LIBDIR.'qrbitstream.php',
+        $QR_LIBDIR.'qrsplit.php',
+        $QR_LIBDIR.'qrrscode.php',
+        $QR_LIBDIR.'qrmask.php',
+        $QR_LIBDIR.'qrencode.php'
     );
     
     $headerFile = $QR_TOOLSDIR.'merged_header.php';
-    $versionFile = $QR_BASEDIR.'VERSION';
+    $versionFile = $QR_BASEDIR.'docs'.DIRECTORY_SEPARATOR.'VERSION';
     
     $outputCode = '';
     
