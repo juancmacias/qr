@@ -49,7 +49,7 @@ $config = [
         'QR_PNG_MAXIMUM_SIZE' => 1024,
     ],
     'production' => [
-        'BASE_URL' => 'https://www.juancarlosmacias.es/qr',
+        'BASE_URL' => 'https://www.juancarlosmacias.es',
         'BASE_PATH' => '/qr/',
         'DEBUG' => false,
         'CACHE_ENABLED' => true,

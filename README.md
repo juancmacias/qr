@@ -45,7 +45,7 @@ qr/
 - **Página Principal**: `index.php` (interfaz moderna)
 - **Ejemplos de Código**: `index_home.php`
 - **Generador Avanzado**: `public/generator.php`
-- **Documentación**: `docs/viewer.php` (visor interactivo)
+- **Documentación**: Ver archivos en `docs/`
 - **Verificar Config**: `public/check-config.php`
 
 ### Uso Básico en Código

@@ -101,56 +101,71 @@ $html_content = simpleMarkdownToHtml($content);
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 60px;
             line-height: 1.6;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            padding: 50px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
         .header {
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 20px;
+            text-align: center;
+            color: white;
             margin-bottom: 30px;
         }
         
         .header h1 {
-            color: #1e3c72;
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .nav-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
         }
         
         .nav-button {
             display: inline-block;
-            padding: 10px 20px;
-            background: #667eea;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             transition: all 0.3s;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            margin: 5px;
         }
         
         .nav-button:hover {
-            background: #764ba2;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
         .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             color: #333;
         }
         
         .content h1 {
-            color: #1e3c72;
+            color: #667eea;
             font-size: 2em;
             margin: 30px 0 20px 0;
             padding-bottom: 10px;
@@ -158,13 +173,13 @@ $html_content = simpleMarkdownToHtml($content);
         }
         
         .content h2 {
-            color: #2a5298;
+            color: #667eea;
             font-size: 1.6em;
             margin: 25px 0 15px 0;
         }
         
         .content h3 {
-            color: #667eea;
+            color: #764ba2;
             font-size: 1.3em;
             margin: 20px 0 10px 0;
         }
@@ -226,14 +241,15 @@ $html_content = simpleMarkdownToHtml($content);
         }
         
         .sidebar {
-            background: #f8f9fa;
+            background: white;
             padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .sidebar h3 {
-            color: #1e3c72;
+            color: #667eea;
             margin-bottom: 15px;
             font-size: 1.2em;
         }
@@ -249,7 +265,7 @@ $html_content = simpleMarkdownToHtml($content);
         }
         
         .doc-link:hover {
-            background: white;
+            background: #f0f0f0;
             color: #667eea;
             transform: translateX(5px);
         }
@@ -259,18 +275,42 @@ $html_content = simpleMarkdownToHtml($content);
             color: white;
         }
         
+        .env-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
         .footer {
             margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
+            padding: 20px;
             text-align: center;
-            color: #999;
+            color: white;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <?php 
+        $headerTitle = '📚 Documentación PHP QR Code';
+        $headerDescription = 'Guías, referencias y análisis técnico del generador de códigos QR';
+        $showEnvBadge = false;
+        include __DIR__ . '/../includes/header.php'; 
+        ?>
+        
+        <div class="nav-section">
             <a href="../index.php" class="nav-button">← Volver al Inicio</a>
             <a href="viewer.php" class="nav-button">📚 Docs</a>
         </div>
@@ -295,9 +335,11 @@ $html_content = simpleMarkdownToHtml($content);
             <?php echo $html_content; ?>
         </div>
         
-        <div class="footer">
-            <p>PHP QR Code - Documentación | © <?php echo date('Y'); ?> Juan Carlos Macías</p>
-        </div>
+        <?php 
+        $footerBasePath = '../';
+        $footerAdditionalLinks = ' | <a href="../index.php">Inicio</a>';
+        include __DIR__ . '/../includes/footer.php'; 
+        ?>
     </div>
 </body>
 </html>

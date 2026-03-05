@@ -14,8 +14,10 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 60px;
         }
         
         .container {
@@ -198,15 +200,13 @@
         .footer {
             text-align: center;
             color: white;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 40px;
+            padding: 20px;
         }
         
         .footer a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
         }
         
         .footer a:hover {
@@ -267,12 +267,11 @@
     ?>
     
     <div class="container">
-        <div class="header">
-            <h1>🔲 Generador de Códigos QR</h1>
-            <p>Crea códigos QR personalizados de forma rápida y sencilla
-                <span class="env-badge"><?php echo strtoupper(ENVIRONMENT); ?></span>
-            </p>
-        </div>
+        <?php 
+        $headerTitle = '🔲 Generador de Códigos QR';
+        $headerDescription = 'Crea códigos QR personalizados de forma rápida y sencilla';
+        include __DIR__ . '/../includes/header.php'; 
+        ?>
         
         <div class="main-content">
             <!-- Formulario de generación -->
@@ -375,7 +374,15 @@
                         
                         <p style="margin:15px 0;color:#666;word-break:break-all;">
                             <strong>Datos codificados:</strong><br>
-                            <?php echo htmlspecialchars(mb_substr($qrData, 0, 100)) . (mb_strlen($qrData) > 100 ? '...' : ''); ?>
+                            <?php 
+                            $displayData = $qrData;
+                            if (function_exists('mb_strlen')) {
+                                $displayData = htmlspecialchars(mb_substr($qrData, 0, 100)) . (mb_strlen($qrData) > 100 ? '...' : '');
+                            } else {
+                                $displayData = htmlspecialchars(substr($qrData, 0, 100)) . (strlen($qrData) > 100 ? '...' : '');
+                            }
+                            echo $displayData;
+                            ?>
                         </p>
                         
                         <a href="<?php echo getUrl('temp/' . $qrFilename); ?>" 
@@ -401,16 +408,11 @@
             </div>
         </div>
         
-        <div class="footer">
-            <p>
-                <a href="check-config.php">🔧 Verificar Configuración</a> |
-                <a href="https://github.com/juancmacias/qr" target="_blank">📚 Documentación</a> |
-                <a href="<?php echo BASE_URL . BASE_PATH; ?>">🏠 Inicio</a>
-            </p>
-            <p style="margin-top:10px;opacity:0.8;font-size:14px;">
-                PHP QR Code Generator | Entorno: <?php echo ENVIRONMENT; ?>
-            </p>
-        </div>
+        <?php 
+        $footerBasePath = BASE_URL . BASE_PATH;
+        $footerAdditionalLinks = ' | <a href="' . BASE_URL . BASE_PATH . '">Inicio</a>';
+        include __DIR__ . '/../includes/footer.php'; 
+        ?>
     </div>
     
     <script>
